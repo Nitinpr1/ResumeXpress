@@ -27,6 +27,26 @@ export const colorTokens = {
     800: "#00D5AB",
     900: "#00D5AA",
   },
+  template1: {
+    50: "#A1CAF1",
+    100: "#004F98",
+    200: "#00308F",
+  },
+  template2: {
+    50: " #FDFF86 ",
+    100: " #FFEE0D ",
+    200: " #FFD500 ",
+  },
+  template3: {
+    50: "#F8D6F7",
+    100: "#9B308B",
+    200: "#7F2972",
+  },
+  template4: {
+    50: "#F83CBB",
+    100: "#A70D67",
+    200: "#8B1057",
+  },
 };
 
 // mui theme settings
@@ -49,6 +69,26 @@ export const themeSettings = (mode) => {
               medium: colorTokens.grey[400],
               light: colorTokens.grey[700],
             },
+            template1: {
+              dark: colorTokens.template1[200],
+              main: colorTokens.template1[100],
+              light: colorTokens.template1[50],
+            },
+            template2: {
+              dark: colorTokens.template2[200],
+              main: colorTokens.template2[100],
+              light: colorTokens.template2[50],
+            },
+            template3: {
+              dark: colorTokens.template3[200],
+              main: colorTokens.template3[100],
+              light: colorTokens.template3[50],
+            },
+            template4: {
+              dark: colorTokens.template4[200],
+              main: colorTokens.template4[100],
+              light: colorTokens.template4[50],
+            },
             background: {
               default: colorTokens.grey[900],
               alt: colorTokens.grey[800],
@@ -67,6 +107,26 @@ export const themeSettings = (mode) => {
               mediumMain: colorTokens.grey[400],
               medium: colorTokens.grey[300],
               light: colorTokens.grey[50],
+            },
+            template1: {
+              dark: colorTokens.template1[200],
+              main: colorTokens.template1[100],
+              light: colorTokens.template1[50],
+            },
+            template2: {
+              dark: colorTokens.template2[200],
+              main: colorTokens.template2[100],
+              light: colorTokens.template2[50],
+            },
+            template3: {
+              dark: colorTokens.template3[200],
+              main: colorTokens.template3[100],
+              light: colorTokens.template3[50],
+            },
+            template4: {
+              dark: colorTokens.template4[200],
+              main: colorTokens.template4[100],
+              light: colorTokens.template4[50],
             },
             background: {
               default: colorTokens.grey[10],
