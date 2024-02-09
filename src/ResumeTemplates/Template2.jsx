@@ -1,10 +1,10 @@
 import { Box, Typography, useTheme, List, ListItem } from "@mui/material";
+import UserData from "../dummydata";
 
 const Template2 = () => {
   const theme = useTheme();
   const main = theme.palette.template2.main;
   const dark = theme.palette.template2.dark;
-  const light = theme.palette.template2.light;
 
   return (
     <Box
@@ -22,16 +22,23 @@ const Template2 = () => {
       >
         <Box>
           <Typography color={dark} variant="h3">
-            John Smith
+            {UserData.personalDetails.name}
           </Typography>
           <Typography color={main} variant="subtitle">
-            Frontend Developer
+            {UserData.personalDetails.tag}
           </Typography>
         </Box>
         <Box>
-          <Typography color={main}>Email: john@gmail.com</Typography>
-          <Typography color={main}>Contact No: 2334456778</Typography>
-          <Typography color={main}>Address: New York City</Typography>
+          <Typography color={main}>
+            Email: {UserData.personalDetails.email}
+          </Typography>
+          <Typography color={main}>
+            Contact No: {UserData.personalDetails.contactNumber}
+          </Typography>
+          <Typography color={main}>
+            Address: {UserData.personalDetails.address}{" "}
+            {UserData.personalDetails.city}
+          </Typography>
         </Box>
       </Box>
       <br />
@@ -47,12 +54,7 @@ const Template2 = () => {
         >
           Objective
         </Typography>
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum,
-          laudantium dolorem corrupti aliquid voluptatibus, soluta beatae
-          laboriosam in modi nisi recusandae eveniet fugit enim repellendus
-          magni ducimus adipisci maiores laborum.
-        </Typography>
+        <Typography>{UserData.objective.text}</Typography>
       </Box>
       {/* EXPERIENCE */}
       <Box>
@@ -67,26 +69,17 @@ const Template2 = () => {
         </Typography>
         <Box mb="0.5rem">
           <List sx={{ listStyle: "decimal", paddingLeft: "1.5rem" }}>
-            <ListItem sx={{ display: "list-item", padding: "0" }}>
-              <Typography fontWeight="bold">
-                Frontend Developer at Google
-              </Typography>
-              <Typography color={main}>2020 to present</Typography>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reprehenderit, aut!
-              </Typography>
-            </ListItem>
-            <ListItem sx={{ display: "list-item", padding: "0" }}>
-              <Typography fontWeight="bold">
-                Frontend Developer at XYZ
-              </Typography>
-              <Typography color={main}>2018 to 2020</Typography>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reprehenderit, aut!
-              </Typography>
-            </ListItem>
+            {UserData.workExperience.map((experience, index) => (
+              <ListItem key={index} sx={{ display: "list-item", padding: "0" }}>
+                <Typography fontWeight="bold">
+                  {experience.jobTitle} at {experience.companyName}
+                </Typography>
+                <Typography color={main}>
+                  {experience.startDate} to {experience.endDate}
+                </Typography>
+                <Typography>{experience.description}</Typography>
+              </ListItem>
+            ))}
           </List>
         </Box>
       </Box>
@@ -103,26 +96,15 @@ const Template2 = () => {
         </Typography>
         <Box mb="0.5rem">
           <List sx={{ listStyle: "decimal", paddingLeft: "1.5rem" }}>
-            <ListItem sx={{ display: "list-item", padding: "0" }}>
-              <Typography fontWeight="bold">
-                Bachelor of Science in Computer Science
-              </Typography>
-              <Typography color={main}>
-                Mumbai University 2015 to 2018
-              </Typography>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reprehenderit, aut!
-              </Typography>
-            </ListItem>
-            <ListItem sx={{ display: "list-item", padding: "0" }}>
-              <Typography fontWeight="bold">HSC</Typography>
-              <Typography color={main}>2013 to 2015</Typography>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reprehenderit, aut!
-              </Typography>
-            </ListItem>
+            {UserData.educationDetails.map((edu, index) => (
+              <ListItem key={index} sx={{ display: "list-item", padding: "0" }}>
+                <Typography fontWeight="bold">{edu.degreeName}</Typography>
+                <Typography color={main}>
+                  {edu.collegeName} {edu.startYear} to {edu.endYear}
+                </Typography>
+                <Typography>{edu.description}</Typography>
+              </ListItem>
+            ))}
           </List>
         </Box>
       </Box>
@@ -138,17 +120,11 @@ const Template2 = () => {
           Skills
         </Typography>
         <List sx={{ listStyle: "decimal", paddingLeft: "1.5rem" }}>
-          <ListItem sx={{ display: "list-item", padding: "0" }}>HTML</ListItem>
-          <ListItem sx={{ display: "list-item", padding: "0" }}>CSS</ListItem>
-          <ListItem sx={{ display: "list-item", padding: "0" }}>
-            Javascript
-          </ListItem>
-          <ListItem sx={{ display: "list-item", padding: "0" }}>
-            React Js
-          </ListItem>
-          <ListItem sx={{ display: "list-item", padding: "0" }}>
-            Next Js
-          </ListItem>
+          {UserData.keySkills.map((skill, index) => (
+            <ListItem key={index} sx={{ display: "list-item", padding: "0" }}>
+              {skill}
+            </ListItem>
+          ))}
         </List>
       </Box>
     </Box>

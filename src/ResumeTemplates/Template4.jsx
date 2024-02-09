@@ -6,6 +6,7 @@ import {
   List,
   ListItem,
 } from "@mui/material";
+import UserData from "../dummydata";
 
 export const Template4 = () => {
   const theme = useTheme();
@@ -29,16 +30,23 @@ export const Template4 = () => {
       >
         <Box>
           <Typography textTransform="uppercase" color={dark} variant="h3">
-            John Smith
+            {UserData.personalDetails.name}
           </Typography>
           <Typography color={main} variant="subtitle">
-            Frontend Developer
+            {UserData.personalDetails.tag}
           </Typography>
         </Box>
         <Box>
-          <Typography color={main}>Email: john@gmail.com</Typography>
-          <Typography color={main}>Contact No: 2334456778</Typography>
-          <Typography color={main}>Address: New York City</Typography>
+          <Typography color={main}>
+            Email: {UserData.personalDetails.email}
+          </Typography>
+          <Typography color={main}>
+            Contact No: {UserData.personalDetails.contactNumber}
+          </Typography>
+          <Typography color={main}>
+            Address:{UserData.personalDetails.address}{" "}
+            {UserData.personalDetails.city}
+          </Typography>
         </Box>
       </Box>
       <Divider color={main} sx={{ height: "10px", borderRadius: "8px" }} />
@@ -53,12 +61,7 @@ export const Template4 = () => {
         >
           Objective
         </Typography>
-        <Typography color={light}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum,
-          laudantium dolorem corrupti aliquid voluptatibus, soluta beatae
-          laboriosam in modi nisi recusandae eveniet fugit enim repellendus
-          magni ducimus adipisci maiores laborum.
-        </Typography>
+        <Typography color={light}>{UserData.objective.text}</Typography>
       </Box>
       {/* EXPERIENCE */}
       <Box>
@@ -70,39 +73,29 @@ export const Template4 = () => {
         >
           Experience
         </Typography>
-        <Box
-          m="1rem 0"
-          display="flex"
-          justifyContent="space-between"
-          alignItems="start"
-        >
-          <Typography fontWeight="bold">
-            Frontend Developer at Google
-          </Typography>
-          <Box>
-            <Typography color={light}>2020 to Present</Typography>
-            <Typography>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam,
-              impedit!
-            </Typography>
-          </Box>
-        </Box>
-        <Divider />
-        <Box
-          m="1rem 0"
-          display="flex"
-          justifyContent="space-between"
-          alignItems="start"
-        >
-          <Typography fontWeight="bold">Frontend Developer at XYZ</Typography>
-          <Box>
-            <Typography color={light}>2020 to Present</Typography>
-            <Typography>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam,
-              impedit!
-            </Typography>
-          </Box>
-        </Box>
+        {UserData.workExperience.map((experience, index) => (
+          <>
+            <Box
+              key={index}
+              m="1rem 0"
+              display="flex"
+              justifyContent="space-between"
+              gap="0.5rem"
+              alignItems="start"
+            >
+              <Typography fontWeight="bold">
+                {experience.jobTitle} at {experience.companyName}
+              </Typography>
+              <Box>
+                <Typography color={light}>
+                  {experience.startDate} to {experience.endDate}
+                </Typography>
+                <Typography>{experience.description}</Typography>
+              </Box>
+            </Box>
+            <Divider />
+          </>
+        ))}
       </Box>
       {/* EDUCATION */}
       <Box m="1rem 0">
@@ -116,26 +109,15 @@ export const Template4 = () => {
         </Typography>
         <Box mb="0.5rem">
           <List sx={{ listStyle: "decimal", paddingLeft: "1.5rem" }}>
-            <ListItem sx={{ display: "list-item", padding: "0" }}>
-              <Typography fontWeight="bold">
-                Bachelor of Science in Computer Science
-              </Typography>
-              <Typography color={main}>
-                Mumbai University 2015 to 2018
-              </Typography>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reprehenderit, aut!
-              </Typography>
-            </ListItem>
-            <ListItem sx={{ display: "list-item", padding: "0" }}>
-              <Typography fontWeight="bold">HSC</Typography>
-              <Typography color={main}>2013 to 2015</Typography>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Reprehenderit, aut!
-              </Typography>
-            </ListItem>
+            {UserData.educationDetails.map((edu, index) => (
+              <ListItem key={index} sx={{ display: "list-item", padding: "0" }}>
+                <Typography fontWeight="bold">{edu.degreeName}</Typography>
+                <Typography color={main}>
+                  {edu.collegeName} {edu.startYear} to {edu.endYear}
+                </Typography>
+                <Typography>{edu.description}</Typography>
+              </ListItem>
+            ))}
           </List>
         </Box>
       </Box>
@@ -158,51 +140,18 @@ export const Template4 = () => {
           gap="1rem"
           flexWrap="wrap"
         >
-          <Typography
-            p="0.50rem"
-            borderRadius="0.50rem"
-            width="fit-content"
-            backgroundColor={dark}
-            color={light3}
-          >
-            HTML
-          </Typography>
-          <Typography
-            p="0.50rem"
-            borderRadius="0.50rem"
-            width="fit-content"
-            backgroundColor={dark}
-            color={light3}
-          >
-            CSS
-          </Typography>
-          <Typography
-            p="0.50rem"
-            borderRadius="0.50rem"
-            width="fit-content"
-            backgroundColor={dark}
-            color={light3}
-          >
-            Javascript
-          </Typography>
-          <Typography
-            p="0.50rem"
-            borderRadius="0.50rem"
-            width="fit-content"
-            backgroundColor={dark}
-            color={light3}
-          >
-            React Js
-          </Typography>
-          <Typography
-            p="0.50rem"
-            borderRadius="0.50rem"
-            width="fit-content"
-            backgroundColor={dark}
-            color={light3}
-          >
-            Next Js
-          </Typography>
+          {UserData.keySkills.map((skill, index) => (
+            <Typography
+              key={index}
+              p="0.50rem"
+              borderRadius="0.50rem"
+              width="fit-content"
+              backgroundColor={dark}
+              color={light3}
+            >
+              {skill}
+            </Typography>
+          ))}
         </Box>
       </Box>
     </Box>
