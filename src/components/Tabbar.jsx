@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Tabs, Tab, Box, useTheme, useMediaQuery } from "@mui/material";
 import PersonalDetails from "../forms/PersonalDetails";
+import Experience from "../forms/Experience";
 
 const VerticalTabs = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -72,7 +73,11 @@ const VerticalTabs = () => {
             <PersonalDetails />
           </div>
         )}
-        {activeTab === 1 && <div>Work Experience content goes here</div>}
+        {activeTab === 1 && (
+          <div>
+            <Experience />
+          </div>
+        )}
         {activeTab === 2 && <div>Education content goes here</div>}
         {activeTab === 3 && <div>Skills content goes here</div>}
       </Box>

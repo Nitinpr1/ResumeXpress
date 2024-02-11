@@ -1,4 +1,4 @@
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import Tabbar from "../components/Tabbar";
 
 const MyResume = () => {
