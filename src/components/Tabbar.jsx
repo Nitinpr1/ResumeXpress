@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Tabs, Tab, Box, useTheme, useMediaQuery } from "@mui/material";
 import PersonalDetails from "../forms/PersonalDetails";
 import Experience from "../forms/Experience";
+import Education from "../forms/Education";
+import Skills from "../forms/Skills";
 
 const VerticalTabs = () => {
   const [activeTab, setActiveTab] = useState(0);
   const theme = useTheme();
   const lightGray = theme.palette.neutral.light;
-  const dark = theme.palette.primary.dark;
-  const light = theme.palette.primary.light;
 
   const isMobileScreen = useMediaQuery("(max-width:600px)");
 
@@ -67,19 +67,11 @@ const VerticalTabs = () => {
       </Box>
 
       <Box width="100%">
-        {/* Render content based on the active tab */}
-        {activeTab === 0 && (
-          <div>
-            <PersonalDetails />
-          </div>
-        )}
-        {activeTab === 1 && (
-          <div>
-            <Experience />
-          </div>
-        )}
-        {activeTab === 2 && <div>Education content goes here</div>}
-        {activeTab === 3 && <div>Skills content goes here</div>}
+        {/* Rendering Forms based on the active tab */}
+        {activeTab === 0 && <PersonalDetails />}
+        {activeTab === 1 && <Experience />}
+        {activeTab === 2 && <Education />}
+        {activeTab === 3 && <Skills />}
       </Box>
     </Box>
   );

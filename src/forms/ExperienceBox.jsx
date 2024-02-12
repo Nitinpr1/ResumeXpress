@@ -77,7 +77,7 @@ const ExperienceBox = ({ control, index }) => {
       </Box>
       <Box
         display="flex"
-        flexWrap="wrap"
+        flexWrap={isMobileScreen ? "wrap" : "nowrap"}
         justifyContent="space-between"
         gap="1rem"
         mt="1rem"
