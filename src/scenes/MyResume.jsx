@@ -1,8 +1,53 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Tabbar from "../components/Tabbar";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Preview from "../components/Preview";
+import { useState } from "react";
 
 const MyResume = () => {
+  const theme = useTheme();
   const isMobileScreen = useMediaQuery("(max-width:600px)");
+  const istemplate1Selected = useSelector((state) => state.template1);
+  const istemplate2Selected = useSelector((state) => state.template2);
+  const istemplate3Selected = useSelector((state) => state.template3);
+  const istemplate4Selected = useSelector((state) => state.template4);
+  const navigate = useNavigate();
+
+  const [onFormSubmit, setOnFormSubmit] = useState(false);
+
+  const isAnyTemplateSelected = () => {
+    if (
+      istemplate1Selected ||
+      istemplate2Selected ||
+      istemplate3Selected ||
+      istemplate4Selected
+    ) {
+      return false;
+    }
+    return true;
+  };
+
+  const navigateToHome = () => {
+    return (
+      <Box color={theme.palette.background.default}>
+        <Typography fontSize="2rem" color={theme.palette.primary.dark}>
+          Please select a template!!
+        </Typography>
+        {setTimeout(() => {
+          navigate("/");
+        }, 1000)}
+      </Box>
+    );
+  };
+
+  const switchComponent = () => {
+    if (onFormSubmit) {
+      return <Preview />;
+    }
+    return <Tabbar setOnFormSubmit={setOnFormSubmit} />;
+  };
+
   return (
     <Box
       p={isMobileScreen ? "1rem 4%" : "4rem 6%"}
@@ -15,7 +60,7 @@ const MyResume = () => {
       }}
     >
       <Box width="100%">
-        <Tabbar />
+        {isAnyTemplateSelected() ? navigateToHome() : switchComponent()}
       </Box>
     </Box>
   );

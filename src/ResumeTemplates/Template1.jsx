@@ -7,12 +7,17 @@ import {
   ListItem,
 } from "@mui/material";
 import UserData from "../dummydata";
+import { useSelector } from "react-redux";
 
 const Template1 = () => {
   const theme = useTheme();
   const main = theme.palette.template1.main;
   const dark = theme.palette.template1.dark;
   const light = theme.palette.template1.light;
+  const personalDetails = useSelector((state) => state.personalInfo);
+  const workExperiences = useSelector((state) => state.workExperiences);
+  const education = useSelector((state) => state.education);
+  const skills = useSelector((state) => state.keySkills);
 
   return (
     <Box
@@ -30,22 +35,19 @@ const Template1 = () => {
       >
         <Box>
           <Typography color={dark} variant="h3">
-            {UserData.personalDetails.name}
+            {personalDetails.firstName} {personalDetails.lastName}
           </Typography>
           <Typography color={main} variant="subtitle">
-            {UserData.personalDetails.tag}
+            {personalDetails.specialization}
           </Typography>
         </Box>
         <Box>
+          <Typography color={main}>Email: {personalDetails.email}</Typography>
           <Typography color={main}>
-            Email: {UserData.personalDetails.email}
+            Contact No: {personalDetails.contactNo}
           </Typography>
           <Typography color={main}>
-            Contact No: {UserData.personalDetails.contactNumber}
-          </Typography>
-          <Typography color={main}>
-            Address: {UserData.personalDetails.address}{" "}
-            {UserData.personalDetails.city}
+            Address: {personalDetails.address} {personalDetails.city}
           </Typography>
         </Box>
       </Box>
@@ -62,7 +64,7 @@ const Template1 = () => {
         >
           Objective
         </Typography>
-        <Typography>{UserData.objective.text}</Typography>
+        <Typography>{personalDetails.objective}</Typography>
       </Box>
       {/* EXPERIENCE */}
       <Box>
@@ -77,15 +79,15 @@ const Template1 = () => {
         </Typography>
         <Box mb="0.5rem">
           <List sx={{ listStyle: "decimal", paddingLeft: "1.5rem" }}>
-            {UserData.workExperience.map((experience, index) => (
+            {workExperiences.jobTitle.map((title, index) => (
               <ListItem key={index} sx={{ display: "list-item", padding: "0" }}>
                 <Typography fontWeight="bold">
-                  {experience.jobTitle} at {experience.companyName}
+                  {title} at {workExperiences.orgName[index]}
                 </Typography>
                 <Typography color={main}>
-                  {experience.startDate} to {experience.endDate}
+                  {workExperiences.StartYear[index]} to{" "}
+                  {workExperiences.endYear[index]}
                 </Typography>
-                <Typography>{experience.description}</Typography>
               </ListItem>
             ))}
           </List>
@@ -114,6 +116,11 @@ const Template1 = () => {
               </ListItem>
             ))}
           </List>
+          <Typography fontWeight="bold">{education.educationType}</Typography>
+          <Typography color={main}>
+            {education.college} {education.startYear} to {education.endYear}
+          </Typography>
+          <Typography>{education.university}</Typography>
         </Box>
       </Box>
       {/* KEY SKILLS */}
@@ -128,7 +135,7 @@ const Template1 = () => {
           Skills
         </Typography>
         <List sx={{ listStyle: "decimal", paddingLeft: "1.5rem" }}>
-          {UserData.keySkills.map((skill, index) => (
+          {skills.Skill.map((skill, index) => (
             <ListItem key={index} sx={{ display: "list-item", padding: "0" }}>
               {skill}
             </ListItem>

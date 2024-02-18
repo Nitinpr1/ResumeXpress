@@ -1,25 +1,105 @@
-import { Box, Typography, useTheme, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  useTheme,
+  Button,
+  useMediaQuery,
+} from "@mui/material";
 import Template1 from "../ResumeTemplates/Template1";
 import Template2 from "../ResumeTemplates/Template2";
 import Template3 from "../ResumeTemplates/Template3";
 import Template4 from "../ResumeTemplates/Template4";
 
 import { template1, template2, template3, template4 } from "../assets";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setTemplate1,
+  setTemplate2,
+  setTemplate3,
+  setTemplate4,
+} from "../store";
+import { useNavigate } from "react-router-dom";
+
 const Home = () => {
   const theme = useTheme();
   const primaryMain = theme.palette.primary.main;
+  const isMobileScreen = useMediaQuery("(max-width:600px)");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const istemplate1Selected = useSelector((state) => state.template1);
+  const istemplate2Selected = useSelector((state) => state.template2);
+  const istemplate3Selected = useSelector((state) => state.template3);
+  const istemplate4Selected = useSelector((state) => state.template4);
+
+  const handleTemplete1 = () => {
+    if (istemplate2Selected) {
+      dispatch(setTemplate2());
+    }
+    if (istemplate3Selected) {
+      dispatch(setTemplate3());
+    }
+    if (istemplate4Selected) {
+      dispatch(setTemplate4());
+    }
+
+    dispatch(setTemplate1());
+    navigate("/myResume");
+  };
+  const handleTemplete2 = () => {
+    if (istemplate1Selected) {
+      dispatch(setTemplate1());
+    }
+    if (istemplate3Selected) {
+      dispatch(setTemplate3());
+    }
+    if (istemplate4Selected) {
+      dispatch(setTemplate4());
+    }
+
+    dispatch(setTemplate2());
+    navigate("/myResume");
+  };
+  const handleTemplete3 = () => {
+    if (istemplate1Selected) {
+      dispatch(setTemplate1());
+    }
+    if (istemplate2Selected) {
+      dispatch(setTemplate2());
+    }
+
+    if (istemplate4Selected) {
+      dispatch(setTemplate4());
+    }
+
+    dispatch(setTemplate3());
+    navigate("/myResume");
+  };
+  const handleTemplete4 = () => {
+    if (istemplate1Selected) {
+      dispatch(setTemplate1());
+    }
+    if (istemplate2Selected) {
+      dispatch(setTemplate2());
+    }
+    if (istemplate3Selected) {
+      dispatch(setTemplate3());
+    }
+
+    dispatch(setTemplate4());
+    navigate("/myResume");
+  };
 
   return (
     <Box
       sx={{
         width: "100%",
         maxWidth: "98%",
-        padding: "4rem 8%",
         margin: "0 auto",
         marginTop: "10px",
         borderRadius: "8px",
       }}
       backgroundColor={theme.palette.background.alt}
+      p={isMobileScreen ? "2rem 4%" : "4rem 8%"}
     >
       <Typography
         fontSize="clamp(2rem, 4rem, 1.5rem)"
@@ -45,7 +125,11 @@ const Home = () => {
           <img width="100%" src={template1} alt="img" />
           {/* <Template1 /> */}
           <Box className="overlayStyles">
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleTemplete1}
+            >
               Use Template
             </Button>
           </Box>
@@ -54,7 +138,11 @@ const Home = () => {
           <img width="100%" src={template2} alt="img" />
           {/* <Template2 /> */}
           <Box className="overlayStyles">
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleTemplete2}
+            >
               Use Template
             </Button>
           </Box>
@@ -63,7 +151,11 @@ const Home = () => {
           <img width="100%" src={template3} alt="img" />
           {/* <Template3 /> */}
           <Box className="overlayStyles">
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleTemplete3}
+            >
               Use Template
             </Button>
           </Box>
@@ -72,7 +164,11 @@ const Home = () => {
           <img width="100%" src={template4} alt="img" />
           {/* <Template4 /> */}
           <Box className="overlayStyles">
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleTemplete4}
+            >
               Use Template
             </Button>
           </Box>

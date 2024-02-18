@@ -1,42 +1,26 @@
 import { useForm } from "react-hook-form";
 import ExperienceBox from "./ExperienceBox";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setWorkExperiences } from "../store";
 
-import {
-  Box,
-  Typography,
-  useTheme,
-  Button,
-  Select,
-  MenuItem,
-  TextField,
-  useMediaQuery,
-  FormControl,
-  InputLabel,
-} from "@mui/material";
+import { Box, Typography, useTheme, Button } from "@mui/material";
 
-const Experience = () => {
+const Experience = ({ onNext, onPrevious }) => {
+  const [formBoxes, setFormBoxes] = useState([0]);
   const theme = useTheme();
   const main = theme.palette.primary.main;
-  const gray = theme.palette.neutral.light;
+  const dispatch = useDispatch();
 
-  const isMobileScreen = useMediaQuery("(max-width:800px)");
-
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  const [formBoxes, setFormBoxes] = useState([0]);
+  const { control, handleSubmit } = useForm();
 
   const handleAddMore = () => {
     setFormBoxes((prevBoxes) => [...prevBoxes, prevBoxes.length]);
+  };
+
+  const onSubmit = (data) => {
+    dispatch(setWorkExperiences(data));
+    onNext();
   };
 
   return (
@@ -67,7 +51,7 @@ const Experience = () => {
           </Box>
 
           <Box display="flex" mt="1rem" gap="1rem" justifyContent="end">
-            <Button size="large" variant="outlined">
+            <Button size="large" variant="outlined" onClick={onPrevious}>
               Previous
             </Button>
             <Button size="large" variant="contained" type="submit">

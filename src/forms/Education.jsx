@@ -11,20 +11,20 @@ import {
   InputLabel,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { setEducation } from "../store";
 
-const Education = () => {
+const Education = ({ onNext, onPrevious }) => {
   const theme = useTheme();
   const main = theme.palette.primary.main;
   const isMobileScreen = useMediaQuery("(max-width:800px)");
+  const dispatch = useDispatch();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { control, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(setEducation(data));
+    onNext();
   };
 
   return (
@@ -179,7 +179,7 @@ const Education = () => {
           </FormControl>
         </Box>
         <Box display="flex" mt="1rem" gap="1rem" justifyContent="end">
-          <Button size="large" variant="outlined">
+          <Button size="large" variant="outlined" onClick={onPrevious}>
             Previous
           </Button>
           <Button size="large" variant="contained" type="submit">

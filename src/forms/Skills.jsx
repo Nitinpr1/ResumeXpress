@@ -1,37 +1,27 @@
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
 
-import {
-  Box,
-  Typography,
-  useTheme,
-  Button,
-  TextField,
-  useMediaQuery,
-  FormControl,
-  InputLabel,
-} from "@mui/material";
+import { Box, Typography, useTheme, Button } from "@mui/material";
 import SkillsBox from "./SkillsBox";
+import { useDispatch } from "react-redux";
+import { setKeySkills } from "../store";
 
-const Skills = () => {
+const Skills = ({ onPrevious, setOnFormSubmit }) => {
   const theme = useTheme();
   const main = theme.palette.primary.main;
-  const isMobileScreen = useMediaQuery("(max-width:800px)");
 
   const [skillField, setskillField] = useState([0]);
+  const dispatch = useDispatch();
 
   const handleAddMore = () => {
     setskillField((prevField) => [...prevField, prevField.length]);
   };
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { control, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(setKeySkills(data));
+    setOnFormSubmit(true);
   };
 
   return (
@@ -62,7 +52,7 @@ const Skills = () => {
           </Box>
         </Box>
         <Box display="flex" mt="1rem" gap="1rem" justifyContent="end">
-          <Button size="large" variant="outlined">
+          <Button size="large" variant="outlined" onClick={onPrevious}>
             Previous
           </Button>
           <Button size="large" variant="contained" type="submit">
