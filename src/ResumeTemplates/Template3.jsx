@@ -7,19 +7,22 @@ import {
   ListItem,
 } from "@mui/material";
 import UserData from "../dummydata";
+import { useSelector } from "react-redux";
+import { useRef } from "react";
 
 const Template3 = () => {
   const theme = useTheme();
   const main = theme.palette.template3.main;
   const dark = theme.palette.template3.dark;
   const light = theme.palette.template3.light;
+  const personalDetails = useSelector((state) => state.personalInfo);
+  const workExperiences = useSelector((state) => state.workExperiences);
+  const education = useSelector((state) => state.education);
+  const skills = useSelector((state) => state.keySkills);
+  const ref = useRef(null);
 
   return (
-    <Box
-      width="100%"
-      border="1px solid gray"
-      backgroundColor={theme.palette.background.alt}
-    >
+    <Box width="100%" backgroundColor="#fff" id="pdf-content" ref={ref}>
       {/* HEADER SECTION */}
       <Box
         display="flex"
@@ -28,31 +31,33 @@ const Template3 = () => {
         backgroundColor={dark}
         p="1rem"
       >
-        <Box>
-          <Typography textTransform="uppercase" color={light} variant="h3">
-            {UserData.personalDetails.name}
+        <Box width="100%" maxWidth="300px">
+          <Typography textTransform="uppercase" color={light} variant="h4">
+            {personalDetails.firstName} {personalDetails.lastName}
           </Typography>
           <Typography color={light} variant="subtitle">
-            {UserData.personalDetails.tag}
+            {personalDetails.specialization}
           </Typography>
         </Box>
-        <Box>
+        <Box width="100%" maxWidth="300px">
           <Typography color={light}>
-            Email: {UserData.personalDetails.email}
+            <span style={{ color: "black" }}>Email:</span>{" "}
+            {personalDetails.email}
           </Typography>
           <Typography color={light}>
-            Contact No: {UserData.personalDetails.contactNumber}
+            <span style={{ color: "black" }}>Contact No:</span>{" "}
+            {personalDetails.contactNo}
           </Typography>
           <Typography color={light}>
-            Address: {UserData.personalDetails.address}{" "}
-            {UserData.personalDetails.city}
+            <span style={{ color: "black" }}>Address:</span>{" "}
+            {personalDetails.address},{personalDetails.city}
           </Typography>
         </Box>
       </Box>
       <Divider />
       {/* OBJECTIVE */}
       <Box p="1rem" backgroundColor={dark}>
-        <Typography color={light}>{UserData.objective.text}</Typography>
+        <Typography color={light}>{personalDetails.objective}</Typography>
       </Box>
       <Box p="1rem">
         {/* EXPERIENCE */}
@@ -60,57 +65,58 @@ const Template3 = () => {
           <Typography
             borderBottom={`1px solid ${main}`}
             color={dark}
-            fontSize="2rem"
-            lineHeight="2rem"
+            fontSize="1.5rem"
+            lineHeight="1.75rem"
             pb="0.25rem"
           >
             Experience
           </Typography>
           <Box mb="0.5rem">
-            <List sx={{ listStyle: "decimal", paddingLeft: "1.5rem" }}>
-              {UserData.workExperience.map((experience, index) => (
+            <List
+              sx={{
+                listStyle: "decimal",
+                paddingLeft: "1.5rem",
+                color: "#000",
+              }}
+            >
+              {workExperiences.jobTitle.map((title, index) => (
                 <ListItem
                   key={index}
                   sx={{ display: "list-item", padding: "0" }}
                 >
-                  <Typography fontWeight="bold">
-                    {experience.jobTitle} at {experience.companyName}
+                  <Typography color="#000">
+                    <span style={{ fontWeight: "bold" }}>{title}</span> at{" "}
+                    {workExperiences.orgName[index]}
                   </Typography>
                   <Typography color={main}>
-                    {experience.startDate} to {experience.endDate}
+                    {workExperiences.StartYear[index]} to{" "}
+                    {workExperiences.endYear[index]}
                   </Typography>
-                  <Typography>{experience.description}</Typography>
                 </ListItem>
               ))}
             </List>
           </Box>
         </Box>
         {/* EDUCATION */}
-        <Box m="1rem 0">
+        <Box m="0.5rem 0">
           <Typography
             borderBottom={`1px solid ${main}`}
             color={dark}
-            fontSize="2rem"
-            lineHeight="2rem"
-            pb="0.25rem"
+            fontSize="1.5rem"
+            lineHeight="1.75rem"
+            p="0.25rem"
           >
             Education
           </Typography>
-          <Box mb="0.5rem">
-            <List sx={{ listStyle: "decimal", paddingLeft: "1.5rem" }}>
-              {UserData.educationDetails.map((edu, index) => (
-                <ListItem
-                  key={index}
-                  sx={{ display: "list-item", padding: "0" }}
-                >
-                  <Typography fontWeight="bold">{edu.degreeName}</Typography>
-                  <Typography color={main}>
-                    {edu.collegeName} {edu.startYear} to {edu.endYear}
-                  </Typography>
-                  <Typography>{edu.description}</Typography>
-                </ListItem>
-              ))}
-            </List>
+          <Box mb="0.5rem" p="0.25rem">
+            <Typography color="#000" fontWeight="bold">
+              {education.educationType} - {education.startYear} to{" "}
+              {education.endYear}
+            </Typography>
+            <Typography color={main}>
+              <span style={{ color: "black" }}>{education.college}</span> ,{" "}
+              {education.university}
+            </Typography>
           </Box>
         </Box>
         {/* KEY SKILLS */}
@@ -118,8 +124,8 @@ const Template3 = () => {
           <Typography
             borderBottom={`1px solid ${main}`}
             color={dark}
-            fontSize="2rem"
-            lineHeight="2rem"
+            fontSize="1.5rem"
+            lineHeight="1.75rem"
             pb="0.25rem"
           >
             Skills
@@ -132,7 +138,7 @@ const Template3 = () => {
             gap="1rem"
             flexWrap="wrap"
           >
-            {UserData.keySkills.map((skill, index) => (
+            {skills.Skill.map((skill, index) => (
               <Typography
                 key={index}
                 p="0.50rem"

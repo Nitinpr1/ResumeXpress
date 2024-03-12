@@ -31,7 +31,7 @@ const Home = () => {
   const istemplate3Selected = useSelector((state) => state.template3);
   const istemplate4Selected = useSelector((state) => state.template4);
 
-  const handleTemplete1 = () => {
+  const handleTemplate1 = () => {
     if (istemplate2Selected) {
       dispatch(setTemplate2());
     }
@@ -45,7 +45,7 @@ const Home = () => {
     dispatch(setTemplate1());
     navigate("/myResume");
   };
-  const handleTemplete2 = () => {
+  const handleTemplate2 = () => {
     if (istemplate1Selected) {
       dispatch(setTemplate1());
     }
@@ -59,7 +59,7 @@ const Home = () => {
     dispatch(setTemplate2());
     navigate("/myResume");
   };
-  const handleTemplete3 = () => {
+  const handleTemplate3 = () => {
     if (istemplate1Selected) {
       dispatch(setTemplate1());
     }
@@ -74,7 +74,7 @@ const Home = () => {
     dispatch(setTemplate3());
     navigate("/myResume");
   };
-  const handleTemplete4 = () => {
+  const handleTemplate4 = () => {
     if (istemplate1Selected) {
       dispatch(setTemplate1());
     }
@@ -128,7 +128,7 @@ const Home = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={handleTemplete1}
+              onClick={handleTemplate1}
             >
               Use Template
             </Button>
@@ -141,7 +141,7 @@ const Home = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={handleTemplete2}
+              onClick={handleTemplate2}
             >
               Use Template
             </Button>
@@ -154,7 +154,7 @@ const Home = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={handleTemplete3}
+              onClick={handleTemplate3}
             >
               Use Template
             </Button>
@@ -167,7 +167,7 @@ const Home = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={handleTemplete4}
+              onClick={handleTemplate4}
             >
               Use Template
             </Button>

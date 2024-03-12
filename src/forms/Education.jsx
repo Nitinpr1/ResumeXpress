@@ -55,9 +55,13 @@ const Education = ({ onNext, onPrevious }) => {
                 error={!!fieldState.error}
               >
                 <MenuItem value="Post Graduate">Post Graduate</MenuItem>
+                <MenuItem value="Graduate">Graduate</MenuItem>
                 <MenuItem value="Under Graduate">Under Graduate</MenuItem>
-                <MenuItem value="Higher Secondary-(12th)">
-                  Higher Secondary-(12th)
+                <MenuItem value="Higher Secondary-12th">
+                  Higher Secondary-12th
+                </MenuItem>
+                <MenuItem value="Secondary School Certificate -10th">
+                  Secondary School Certificate -10th
                 </MenuItem>
               </Select>
             )}

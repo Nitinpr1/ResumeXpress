@@ -29,14 +29,14 @@ const MyResume = () => {
   };
 
   const navigateToHome = () => {
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
     return (
       <Box color={theme.palette.background.default}>
         <Typography fontSize="2rem" color={theme.palette.primary.dark}>
           Please select a template!!
         </Typography>
-        {setTimeout(() => {
-          navigate("/");
-        }, 1000)}
       </Box>
     );
   };
