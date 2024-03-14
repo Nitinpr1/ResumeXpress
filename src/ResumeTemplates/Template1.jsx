@@ -184,7 +184,7 @@ const Template1 = (props) => {
       <Box
         display="flex"
         justifyContent="space-between"
-        flexWrap={isMobileScreen ? "wrap" : "nowrap"}
+        flexWrap="nowrap"
         alignItems="center"
         gap="1rem"
         mb="1rem"
@@ -252,6 +252,9 @@ const Template1 = (props) => {
                   {workExperiences.StartYear[index]} to{" "}
                   {workExperiences.endYear[index]}
                 </Typography>
+                <Typography color="#000">
+                  {workExperiences.description[index]}
+                </Typography>
               </ListItem>
             ))}
           </List>
@@ -277,6 +280,7 @@ const Template1 = (props) => {
             <span style={{ color: "black" }}>{education.college}</span> ,{" "}
             {education.university}
           </Typography>
+          <Typography color="#000">{education.description}</Typography>
         </Box>
       </Box>
       {/* KEY SKILLS */}

@@ -45,7 +45,7 @@ const PersonalDetails = ({ onNext }) => {
       backgroundColor={theme.palette.background.alt}
       borderRadius="8px"
     >
-      <Typography variant="h4" mb="1rem" color={main}>
+      <Typography variant={isMobileScreen ? "h6" : "h4"} mb="1rem" color={main}>
         Personal Information
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -63,6 +63,14 @@ const PersonalDetails = ({ onNext }) => {
               minLength: {
                 value: 4,
                 message: "should be at least 4 characters",
+              },
+              maxLength: {
+                value: 20,
+                message: "should not be more than 20 characters",
+              },
+              pattern: {
+                value: /^[a-zA-Z]+$/,
+                message: "invalid name",
               },
             }}
             render={({ field, fieldState }) => (
@@ -84,6 +92,14 @@ const PersonalDetails = ({ onNext }) => {
               minLength: {
                 value: 4,
                 message: "should be at least 4 characters",
+              },
+              maxLength: {
+                value: 20,
+                message: "should not be more than 20 characters",
+              },
+              pattern: {
+                value: /^[a-zA-Z]+$/,
+                message: "invalid  last name",
               },
             }}
             render={({ field, fieldState }) => (
@@ -156,6 +172,10 @@ const PersonalDetails = ({ onNext }) => {
               value: 4,
               message: "should be at least 4 characters",
             },
+            maxLength: {
+              value: 100,
+              message: "should not be more than 100 characters",
+            },
           }}
           render={({ field, fieldState }) => (
             <TextField
@@ -183,6 +203,10 @@ const PersonalDetails = ({ onNext }) => {
               minLength: {
                 value: 3,
                 message: "should be at least 3 characters",
+              },
+              maxLength: {
+                value: 50,
+                message: "should not be more than 50 characters",
               },
             }}
             render={({ field, fieldState }) => (
@@ -227,6 +251,10 @@ const PersonalDetails = ({ onNext }) => {
               value: 4,
               message: "should be at least 4 characters",
             },
+            maxLength: {
+              value: 30,
+              message: "should not be more than 30 characters",
+            },
           }}
           render={({ field, fieldState }) => (
             <TextField
@@ -234,6 +262,7 @@ const PersonalDetails = ({ onNext }) => {
               {...field}
               margin="normal"
               fullWidth
+              placeholder="eg. 'Designer', 'Developer', 'Data Analyst'"
               error={!!fieldState.error}
               helperText={fieldState.error?.message || ""}
             />
@@ -250,6 +279,10 @@ const PersonalDetails = ({ onNext }) => {
                 value: 50,
                 message: "should be at least 50 characters",
               },
+              maxLength: {
+                value: 400,
+                message: "should not be more thn 400 characters",
+              },
             }}
             render={({ field, fieldState }) => (
               <TextField
@@ -257,6 +290,7 @@ const PersonalDetails = ({ onNext }) => {
                 {...field}
                 multiline
                 margin="normal"
+                placeholder="Write something about yourself..."
                 fullWidth
                 rows={4}
                 error={!!fieldState.error}

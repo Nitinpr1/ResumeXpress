@@ -82,6 +82,10 @@ const Education = ({ onNext, onPrevious }) => {
                 value: 4,
                 message: "should be at least 4 characters",
               },
+              maxLength: {
+                value: 50,
+                message: "should not be more than 50 characters",
+              },
             }}
             render={({ field, fieldState }) => (
               <TextField
@@ -102,6 +106,10 @@ const Education = ({ onNext, onPrevious }) => {
               minLength: {
                 value: 4,
                 message: "should be at least 4 characters",
+              },
+              maxLength: {
+                value: 50,
+                message: "should not be more than 50 characters",
               },
             }}
             render={({ field, fieldState }) => (
@@ -182,6 +190,30 @@ const Education = ({ onNext, onPrevious }) => {
             />
           </FormControl>
         </Box>
+        <Controller
+          name="description"
+          control={control}
+          rules={{
+            required: "required",
+            minLength: {
+              value: 50,
+              message: "should be at least 50 characters",
+            },
+          }}
+          render={({ field, fieldState }) => (
+            <TextField
+              label="Description"
+              {...field}
+              margin="normal"
+              fullWidth
+              multiline
+              rows={2}
+              placeholder="Write something about your learning journey..."
+              error={!!fieldState.error}
+              helperText={fieldState.error?.message || ""}
+            />
+          )}
+        />
         <Box display="flex" mt="1rem" gap="1rem" justifyContent="end">
           <Button size="large" variant="outlined" onClick={onPrevious}>
             Previous

@@ -41,6 +41,10 @@ const ExperienceBox = ({ control, index }) => {
               value: 4,
               message: "Job Title should be at least 4 characters",
             },
+            maxLength: {
+              value: 40,
+              message: "Job Title should not be more than 40 characters",
+            },
           }}
           render={({ field, fieldState }) => (
             <TextField
@@ -61,6 +65,11 @@ const ExperienceBox = ({ control, index }) => {
             minLength: {
               value: 4,
               message: "Organization Name should be at least 4 characters",
+            },
+            maxLength: {
+              value: 40,
+              message:
+                "Organization Name should not be more than 60 characters",
             },
           }}
           render={({ field, fieldState }) => (
@@ -140,6 +149,36 @@ const ExperienceBox = ({ control, index }) => {
             )}
           />
         </FormControl>
+      </Box>
+      <Box width="100%" mt="1rem">
+        <Controller
+          name={`description[${index}]`}
+          control={control}
+          rules={{
+            required: "description is required",
+            minLength: {
+              value: 50,
+              message: "description should be at least 50 characters",
+            },
+            maxLength: {
+              value: 400,
+              message: "description should not be more than 400 characters",
+            },
+          }}
+          render={({ field, fieldState }) => (
+            <TextField
+              label="Description"
+              {...field}
+              margin="normal"
+              fullWidth
+              multiline
+              rows={2}
+              placeholder="Write something about your experience..."
+              error={!!fieldState.error}
+              helperText={fieldState.error?.message || ""}
+            />
+          )}
+        />
       </Box>
     </Box>
   );

@@ -102,7 +102,7 @@ const Home = () => {
       p={isMobileScreen ? "2rem 4%" : "4rem 8%"}
     >
       <Typography
-        fontSize="clamp(2rem, 4rem, 1.5rem)"
+        fontSize={isMobileScreen ? "18px" : "30px"}
         color={primaryMain}
         mb="2rem"
         textAlign="center"

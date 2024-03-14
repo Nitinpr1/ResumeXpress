@@ -88,7 +88,7 @@ export const Template4 = () => {
           <>
             <Box
               key={index}
-              m="1rem 0"
+              m="0.5rem 0"
               display="flex"
               justifyContent="space-between"
               gap="0.5rem"
@@ -105,7 +105,9 @@ export const Template4 = () => {
                 </Typography>
               </Box>
             </Box>
-            <Divider color="lightgray" />
+            <Typography color="#000">
+              {workExperiences.description[index]}
+            </Typography>
           </>
         ))}
       </Box>
@@ -128,6 +130,7 @@ export const Template4 = () => {
             <span style={{ color: "black" }}>{education.college}</span> ,{" "}
             {education.university}
           </Typography>
+          <Typography color="#000">{education.description}</Typography>
         </Box>
       </Box>
       {/* KEY SKILLS */}

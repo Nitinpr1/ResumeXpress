@@ -91,6 +91,9 @@ const Template2 = () => {
                   {workExperiences.StartYear[index]} to{" "}
                   {workExperiences.endYear[index]}
                 </Typography>
+                <Typography color="#000">
+                  {workExperiences.description[index]}
+                </Typography>
               </ListItem>
             ))}
           </List>
@@ -116,6 +119,7 @@ const Template2 = () => {
             <span style={{ color: "black" }}>{education.college}</span> ,{" "}
             {education.university}
           </Typography>
+          <Typography color="#000">{education.description}</Typography>
           {/* <List sx={{ listStyle: "decimal", paddingLeft: "1.5rem" }}>
             {UserData.educationDetails.map((edu, index) => (
               <ListItem key={index} sx={{ display: "list-item", padding: "0" }}>

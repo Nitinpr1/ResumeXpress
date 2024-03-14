@@ -82,9 +82,16 @@ const Preview = () => {
         justifyContent="space-between"
         gap={isMobileScreen ? "1.5rem" : "2rem"}
       >
-        <Box width="100%" minWidth={isMobileScreen ? "100%" : "600px"}>
-          {getTemplate()}
+        <Box
+          width="100%"
+          minWidth={isMobileScreen ? "280px" : "600px"}
+          overflow="auto"
+        >
+          <Box width="100%" minWidth="600px">
+            {getTemplate()}
+          </Box>
         </Box>
+
         <Box
           width="100%"
           minWidth="200px"
