@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Box, Typography, useTheme, Button } from "@mui/material";
 import SkillsBox from "./SkillsBox";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setKeySkills } from "../store";
 
 const Skills = ({ onPrevious, setOnFormSubmit }) => {
@@ -12,12 +12,17 @@ const Skills = ({ onPrevious, setOnFormSubmit }) => {
 
   const [skillField, setskillField] = useState([0]);
   const dispatch = useDispatch();
+  const skills = useSelector((state) => state.keySkills);
 
   const handleAddMore = () => {
     setskillField((prevField) => [...prevField, prevField.length]);
   };
 
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      Skill: skills.Skill,
+    },
+  });
 
   const onSubmit = (data) => {
     dispatch(setKeySkills(data));

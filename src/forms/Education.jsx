@@ -13,14 +13,25 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setEducation } from "../store";
+import { useSelector } from "react-redux";
 
 const Education = ({ onNext, onPrevious }) => {
   const theme = useTheme();
   const main = theme.palette.primary.main;
   const isMobileScreen = useMediaQuery("(max-width:800px)");
   const dispatch = useDispatch();
+  const education = useSelector((state) => state.education);
 
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      educationType: education.educationType,
+      university: education.university,
+      college: education.college,
+      startYear: education.startYear,
+      endYear: education.endYear,
+      description: education.description,
+    },
+  });
 
   const onSubmit = (data) => {
     dispatch(setEducation(data));

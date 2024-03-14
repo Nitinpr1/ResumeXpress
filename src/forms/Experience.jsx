@@ -3,6 +3,7 @@ import ExperienceBox from "./ExperienceBox";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setWorkExperiences } from "../store";
+import { useSelector } from "react-redux";
 
 import { Box, Typography, useTheme, Button } from "@mui/material";
 
@@ -11,8 +12,17 @@ const Experience = ({ onNext, onPrevious }) => {
   const theme = useTheme();
   const main = theme.palette.primary.main;
   const dispatch = useDispatch();
+  const workExperiences = useSelector((state) => state.workExperiences);
 
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      jobTitle: workExperiences.jobTitle,
+      orgName: workExperiences.orgName,
+      StartYear: workExperiences.StartYear,
+      endYear: workExperiences.endYear,
+      description: workExperiences.description,
+    },
+  });
 
   const handleAddMore = () => {
     setFormBoxes((prevBoxes) => [...prevBoxes, prevBoxes.length]);

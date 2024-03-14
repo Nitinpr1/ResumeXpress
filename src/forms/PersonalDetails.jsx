@@ -10,6 +10,7 @@ import {
   Button,
   useMediaQuery,
 } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const PersonalDetails = ({ onNext }) => {
   const theme = useTheme();
@@ -17,18 +18,19 @@ const PersonalDetails = ({ onNext }) => {
 
   const isMobileScreen = useMediaQuery("(max-width:800px)");
   const dispatch = useDispatch();
+  const personalDetails = useSelector((state) => state.personalInfo);
 
   const { handleSubmit, control } = useForm({
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      contactNo: "",
-      address: "",
-      city: "",
-      pinCode: "",
-      specialization: "",
-      objective: "",
+      firstName: personalDetails.firstName,
+      lastName: personalDetails.lastName,
+      email: personalDetails.email,
+      contactNo: personalDetails.contactNo,
+      address: personalDetails.address,
+      city: personalDetails.city,
+      pinCode: personalDetails.pinCode,
+      specialization: personalDetails.specialization,
+      objective: personalDetails.objective,
     },
   });
 

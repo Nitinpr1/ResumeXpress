@@ -5,6 +5,7 @@ import {
   useTheme,
   List,
   ListItem,
+  useMediaQuery,
 } from "@mui/material";
 import UserData from "../dummydata";
 import { useSelector } from "react-redux";
@@ -12,6 +13,7 @@ import { useRef } from "react";
 
 const Template3 = () => {
   const theme = useTheme();
+  const isMobileScreen = useMediaQuery("(max-width:800px)");
   const main = theme.palette.template3.main;
   const dark = theme.palette.template3.dark;
   const light = theme.palette.template3.light;
@@ -22,12 +24,19 @@ const Template3 = () => {
   const ref = useRef(null);
 
   return (
-    <Box width="100%" backgroundColor="#fff" id="pdf-content" ref={ref}>
+    <Box
+      width="100%"
+      minWidth={isMobileScreen ? "800px" : "auto"}
+      backgroundColor="#fff"
+      id="pdf-content"
+      ref={ref}
+    >
       {/* HEADER SECTION */}
       <Box
         display="flex"
         justifyContent="space-between"
         alignItems="center"
+        gap="1rem"
         backgroundColor={dark}
         p="1rem"
       >

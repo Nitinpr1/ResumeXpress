@@ -94,8 +94,7 @@ const Preview = () => {
 
         <Box
           width="100%"
-          minWidth="200px"
-          maxWidth="300px"
+          maxWidth="280px"
           maxHeight="210px"
           p="1rem"
           backgroundColor={theme.palette.background.alt}
