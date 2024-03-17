@@ -20,10 +20,12 @@ const Education = ({ onNext, onPrevious }) => {
   const main = theme.palette.primary.main;
   const isMobileScreen = useMediaQuery("(max-width:800px)");
   const dispatch = useDispatch();
+  // getting the data if there are data for education in the global state
   const education = useSelector((state) => state.education);
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, getValues } = useForm({
     defaultValues: {
+      // this data is from the global state
       educationType: education.educationType,
       university: education.university,
       college: education.college,
@@ -34,7 +36,9 @@ const Education = ({ onNext, onPrevious }) => {
   });
 
   const onSubmit = (data) => {
+    // the form data will be dispatched to global state
     dispatch(setEducation(data));
+    //the onNext function will be called and the function from Tabbar will be executed to move to next form
     onNext();
   };
 
@@ -178,6 +182,12 @@ const Education = ({ onNext, onPrevious }) => {
               control={control}
               rules={{
                 required: "Required",
+                validate: {
+                  notLessThanStartYear: (value) =>
+                    parseInt(value) >= parseInt(getValues("startYear"))
+                      ? true
+                      : "End year must be greater than or equal to start year",
+                },
               }}
               render={({ field, fieldState }) => (
                 <Select

@@ -14,6 +14,7 @@ const Skills = ({ onPrevious, setOnFormSubmit }) => {
   const dispatch = useDispatch();
   const skills = useSelector((state) => state.keySkills);
 
+  // this function is responsible to add the next set of skill box
   const handleAddMore = () => {
     setskillField((prevField) => [...prevField, prevField.length]);
   };
@@ -26,6 +27,7 @@ const Skills = ({ onPrevious, setOnFormSubmit }) => {
 
   const onSubmit = (data) => {
     dispatch(setKeySkills(data));
+    //here the function from myResume component is called and will be responsible for rendering the preview component
     setOnFormSubmit(true);
   };
 

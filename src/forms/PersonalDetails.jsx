@@ -18,10 +18,12 @@ const PersonalDetails = ({ onNext }) => {
 
   const isMobileScreen = useMediaQuery("(max-width:800px)");
   const dispatch = useDispatch();
+  //getting the personal info form global state
   const personalDetails = useSelector((state) => state.personalInfo);
 
   const { handleSubmit, control } = useForm({
     defaultValues: {
+      // these values are from personal info in global state
       firstName: personalDetails.firstName,
       lastName: personalDetails.lastName,
       email: personalDetails.email,
@@ -36,6 +38,7 @@ const PersonalDetails = ({ onNext }) => {
 
   const onSubmit = (data) => {
     dispatch(setPersonalInfo(data));
+    //the onNext function will be called and the function from Tabbar will be executed to move to next form
     onNext();
   };
 

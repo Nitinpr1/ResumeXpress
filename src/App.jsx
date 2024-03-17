@@ -8,6 +8,7 @@ import Home from "./scenes/Home ";
 import MyResume from "./scenes/MyResume";
 import AboutUs from "./scenes/AboutUs";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -24,6 +25,7 @@ function App() {
             <Route path="/myResume" element={<MyResume />} />
             <Route path="/aboutUs" element={<AboutUs />} />
           </Routes>
+          <Footer />
         </ThemeProvider>
       </BrowserRouter>
     </div>

@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { Controller } from "react-hook-form";
 
-const ExperienceBox = ({ control, index }) => {
+const ExperienceBox = ({ control, index, getValues }) => {
   const theme = useTheme();
   const main = theme.palette.primary.main;
   const gray = theme.palette.neutral.light;
@@ -127,6 +127,12 @@ const ExperienceBox = ({ control, index }) => {
             control={control}
             rules={{
               required: "Required",
+              validate: {
+                notLessThanStartYear: (value) =>
+                  parseInt(value) >= parseInt(getValues(`StartYear[${index}]`))
+                    ? true
+                    : "End year must be greater than or equal to start year",
+              },
             }}
             render={({ field, fieldState }) => (
               <Select

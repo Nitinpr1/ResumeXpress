@@ -20,6 +20,8 @@ const Preview = () => {
 
   const { handleSubmit, control } = useForm();
 
+  //this function is responsible for converting the template to pdf
+
   const convertToPDF = (htmlContent, resumeName) => {
     html2canvas(htmlContent).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
@@ -50,6 +52,7 @@ const Preview = () => {
     convertToPDF(htmlContent, resumeName);
   };
 
+  //this function will return the right template that user has selected
   const getTemplate = () => {
     switch (true) {
       case template1:

@@ -12,10 +12,12 @@ const Experience = ({ onNext, onPrevious }) => {
   const theme = useTheme();
   const main = theme.palette.primary.main;
   const dispatch = useDispatch();
+  // getting the work experience from global state
   const workExperiences = useSelector((state) => state.workExperiences);
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, getValues } = useForm({
     defaultValues: {
+      // these values are form workexperiences in the global state
       jobTitle: workExperiences.jobTitle,
       orgName: workExperiences.orgName,
       StartYear: workExperiences.StartYear,
@@ -24,12 +26,14 @@ const Experience = ({ onNext, onPrevious }) => {
     },
   });
 
+  // this function is responsible to add the next set of experience box
   const handleAddMore = () => {
     setFormBoxes((prevBoxes) => [...prevBoxes, prevBoxes.length]);
   };
 
   const onSubmit = (data) => {
     dispatch(setWorkExperiences(data));
+    //the onNext function will be called and the function from Tabbar will be executed to move to next form
     onNext();
   };
 
@@ -47,8 +51,14 @@ const Experience = ({ onNext, onPrevious }) => {
       <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box>
+            {/*mapping through all the form boxes and displaying them*/}
             {formBoxes.map((index) => (
-              <ExperienceBox key={index} control={control} index={index} />
+              <ExperienceBox
+                key={index}
+                control={control}
+                index={index}
+                getValues={getValues}
+              />
             ))}
           </Box>
           <Box

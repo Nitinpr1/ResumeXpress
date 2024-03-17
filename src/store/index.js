@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// defining the initial states
 const initialState = {
   mode: "light",
   template1: false,
@@ -12,6 +13,7 @@ const initialState = {
   keySkills: {},
 };
 
+// defining the reducers for the initial state
 export const stateSlice = createSlice({
   name: "state",
   initialState,

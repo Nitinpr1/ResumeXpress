@@ -8,15 +8,18 @@ import { useState } from "react";
 const MyResume = () => {
   const theme = useTheme();
   const isMobileScreen = useMediaQuery("(max-width:600px)");
+  //getting the templates status form state
   const istemplate1Selected = useSelector((state) => state.template1);
   const istemplate2Selected = useSelector((state) => state.template2);
   const istemplate3Selected = useSelector((state) => state.template3);
   const istemplate4Selected = useSelector((state) => state.template4);
   const navigate = useNavigate();
 
+  // useState for final form submission
   const [onFormSubmit, setOnFormSubmit] = useState(false);
 
   const isAnyTemplateSelected = () => {
+    //here we have to check if any template is selected if not so we have to send user to home page
     if (
       istemplate1Selected ||
       istemplate2Selected ||
@@ -29,6 +32,7 @@ const MyResume = () => {
   };
 
   const navigateToHome = () => {
+    //this function will responsible to navigate to the home page
     setTimeout(() => {
       navigate("/");
     }, 1000);
@@ -42,6 +46,7 @@ const MyResume = () => {
   };
 
   const switchComponent = () => {
+    // this function will display the preview component if the form is submitted
     if (onFormSubmit) {
       return <Preview />;
     }
