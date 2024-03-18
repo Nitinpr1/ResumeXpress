@@ -8,12 +8,12 @@ import { useSelector } from "react-redux";
 import { Box, Typography, useTheme, Button } from "@mui/material";
 
 const Experience = ({ onNext, onPrevious }) => {
-  const [formBoxes, setFormBoxes] = useState([0]);
   const theme = useTheme();
   const main = theme.palette.primary.main;
   const dispatch = useDispatch();
   // getting the work experience from global state
   const workExperiences = useSelector((state) => state.workExperiences);
+  const [formBoxes, setFormBoxes] = useState([0]);
 
   const { control, handleSubmit, getValues } = useForm({
     defaultValues: {

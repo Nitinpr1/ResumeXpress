@@ -108,7 +108,7 @@ const Preview = ({ setOnFormSubmit }) => {
             <img src={done} width="100%" height="auto" alt="img" />
           </Box>
           <Typography textAlign="center" variant="h5" color="greenyellow">
-            Saved Successfully!
+            Saved Successfully!!
           </Typography>
         </Box>
       </Box>

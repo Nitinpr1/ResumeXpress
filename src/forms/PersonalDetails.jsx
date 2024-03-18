@@ -66,8 +66,8 @@ const PersonalDetails = ({ onNext }) => {
             rules={{
               required: "first name is required",
               minLength: {
-                value: 4,
-                message: "should be at least 4 characters",
+                value: 3,
+                message: "should be at least 3 characters",
               },
               maxLength: {
                 value: 20,
@@ -95,8 +95,8 @@ const PersonalDetails = ({ onNext }) => {
             rules={{
               required: "last name is required",
               minLength: {
-                value: 4,
-                message: "should be at least 4 characters",
+                value: 3,
+                message: "should be at least 3 characters",
               },
               maxLength: {
                 value: 20,

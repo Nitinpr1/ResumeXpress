@@ -67,7 +67,7 @@ const ExperienceBox = ({ control, index, getValues }) => {
               message: "Organization Name should be at least 4 characters",
             },
             maxLength: {
-              value: 40,
+              value: 60,
               message:
                 "Organization Name should not be more than 60 characters",
             },
