@@ -48,7 +48,7 @@ const MyResume = () => {
   const switchComponent = () => {
     // this function will display the preview component if the form is submitted
     if (onFormSubmit) {
-      return <Preview />;
+      return <Preview setOnFormSubmit={setOnFormSubmit} />;
     }
     return <Tabbar setOnFormSubmit={setOnFormSubmit} />;
   };

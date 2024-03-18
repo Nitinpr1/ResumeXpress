@@ -8,8 +8,10 @@ import { useForm, Controller } from "react-hook-form";
 import { useSelector } from "react-redux";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import done from "../assets/done.gif";
+import { useState } from "react";
 
-const Preview = () => {
+const Preview = ({ setOnFormSubmit }) => {
   const theme = useTheme();
   const main = theme.palette.primary.main;
   const isMobileScreen = useMediaQuery("(max-width:800px)");
@@ -17,6 +19,7 @@ const Preview = () => {
   const template2 = useSelector((state) => state.template2);
   const template3 = useSelector((state) => state.template3);
   const template4 = useSelector((state) => state.template4);
+  const [isDownloading, setDownloading] = useState(false);
 
   const { handleSubmit, control } = useForm();
 
@@ -43,12 +46,16 @@ const Preview = () => {
       }
 
       pdf.save(`${resumeName}.pdf`);
+      setTimeout(() => {
+        setDownloading(false);
+      }, 2000);
     });
   };
 
   const onSubmit = (data) => {
     const resumeName = data.resumeName;
     const htmlContent = document.getElementById("pdf-content");
+    setDownloading(true);
     convertToPDF(htmlContent, resumeName);
   };
 
@@ -68,8 +75,49 @@ const Preview = () => {
     }
   };
 
+  const handleBack = () => {
+    setOnFormSubmit(false);
+  };
+
+  const Model = () => {
+    return (
+      <Box
+        position="fixed"
+        top="0"
+        left="0"
+        width="100%"
+        height="100%"
+        zIndex="10"
+        backgroundColor="rgba(0, 0, 0, 0.5)"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Box
+          p="1rem"
+          borderRadius="8px"
+          backgroundColor={theme.palette.background.alt}
+        >
+          <Box
+            width="100%"
+            maxWidth="200px"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <img src={done} width="100%" height="auto" alt="img" />
+          </Box>
+          <Typography textAlign="center" variant="h5" color="greenyellow">
+            Saved Successfully!
+          </Typography>
+        </Box>
+      </Box>
+    );
+  };
+
   return (
     <Box
+      position="relative"
       p="5px"
       sx={{
         width: "100%",
@@ -79,6 +127,7 @@ const Preview = () => {
         borderRadius: "8px",
       }}
     >
+      {isDownloading ? <Model /> : ""}
       <Box
         display="flex"
         flexDirection={isMobileScreen ? "column-reverse" : "row"}
@@ -130,9 +179,14 @@ const Preview = () => {
                   />
                 )}
               />
-              <Button variant="contained" size="large" type="submit">
-                Save
-              </Button>
+              <Box display="flex" flexWrap="wrap" gap="0.5rem">
+                <Button size="large" variant="outlined" onClick={handleBack}>
+                  Back
+                </Button>
+                <Button variant="contained" size="large" type="submit">
+                  Save
+                </Button>
+              </Box>
             </Box>
           </form>
         </Box>

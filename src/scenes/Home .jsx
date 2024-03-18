@@ -158,7 +158,7 @@ const Home = () => {
       </Box>
       <Divider />
       {/* TEMPLATE SECTION */}
-      <Box mt="1rem">
+      <Box mt={isMobileScreen ? "1rem" : "3rem"}>
         <Typography
           fontSize={isMobileScreen ? "18px" : "30px"}
           color={primaryMain}
